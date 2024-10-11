@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8081:80"  # Expose on port 8081 for the frontend
+    networks:
+      - localnet
+    depends_on:
+      - main-app
+
+  # Main App (Node.js) Service
+  main-app:
+    build:
+      context: ./main-app
+    env_file: ./main-app/.env
+    ports:
+      - "3000:3000"
+    networks:
+      - localnet
+    depends_on:
+      - auth-service
+      - cassandra
+
+  # Auth Service (Java) Service
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/yourdb
+      SPRING_DATASOURCE_USERNAME: youruser
+      SPRING_DATASOURCE_PASSWORD: yourpassword
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+    depends_on:
+      - postgres
+    networks:
+      - localnet
+
+  # PostgreSQL for Auth Service
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: yourdb
+      POSTGRES_USER: youruser
+      POSTGRES_PASSWORD: yourpassword
+    ports:
+      - "5432:5432"  # Expose PostgreSQL on default port
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - localnet
+
+  # Cassandra for Main App
+  cassandra:
+    image: cassandra:3.11
+    ports:
+      - "9042:9042"  # Expose Cassandra on port 9042
+    networks:
+      - localnet
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+
+networks:
+  localnet:
+    driver: bridge  # Automatically creates a bridge network for all services
+
+volumes:
+  postgres-data:
+  cassandra-data:

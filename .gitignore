@@ -1,0 +1,42 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Docker
+docker-compose.override.yml
+docker-data/
+
+# Build
+/dist
+/build
+/out
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.sublime-workspace
+
+# macOS
+.DS_Store
+
+# Spring Boot
+target/
+*.jar
+*.war
+*.class
+
+# Temporary files
+*.swp
+*~
+.project
+.classpath
+.settings/
+
+# OS generated files
+Thumbs.db
