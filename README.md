@@ -20,7 +20,7 @@ Each service is containerised, making it flexible and scalable via **AWS ECS**.
 
 ## **Architecture Diagram**
 
-![alt text](./Architecture-Image/Architecture-Excersie.png)
+![alt text](./Architecture-Excersie.png)
 
 ---
 
@@ -64,7 +64,7 @@ Each service is containerised, making it flexible and scalable via **AWS ECS**.
   
 - **Scalability**: Auto-scaling for both the **Auth Service** and **Main App** ensures we can handle anything from a few users to a big rush. **API Gateway** manages and routes incoming traffic, distributing requests to the appropriate backend services.
 
-- **Maintainability**: Using **Docker** and **ECS** makes it easy to roll out updates, scale services, and debug issues. Containerization ensures consistency across environments.
+- **Maintainability**: Using **Docker** and **ECS** makes it easy to roll out updates, scale services, and debug issues. Containerisation ensures consistency across environments.
 
 - **Cost Effectiveness**: I’ve deployed everything on **Auto Scaling Groups** and, where possible, leveraged **spot instances** to keep costs down while maintaining performance. Scaling policies ensure resources are only allocated when necessary.
 
