@@ -57,7 +57,7 @@ This app is a cloud-based service consisting of four key components:
 
 - **Maintainability**: Using **Docker** and **ECS** makes it easy to roll out updates, scale services, and debug issues. Containerisation ensures consistency across environments.
 
-- **Cost Effectiveness**: I’ve deployed everything on **Auto Scaling Groups** and, where possible, leveraged **spot instances** to keep costs down while maintaining performance. Scaling policies ensure resources are only allocated when necessary.
+- **Cost Effectiveness**: I’ve deployed everything using **Fargate** for the back-end and auth services.
 
 
 ## **What I'd Do With More Time**
